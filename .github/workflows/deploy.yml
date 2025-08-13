@@ -33,6 +33,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+          IMAGE_NAME=zjiayan/airline-order-frontend
+          IMAGE_TAG=${{ env.IMAGE_TAG }}
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
             docker pull $IMAGE_NAME:${IMAGE_TAG} &&
             docker stop my-angular-app || true &&
