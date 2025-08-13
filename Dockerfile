@@ -15,5 +15,6 @@ RUN npm run build
 # 阶段2：用 Nginx 提供静态文件
 FROM nginx:alpine
 COPY --from=frontend-builder /app/dist/airline-order-frontend/browser /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
